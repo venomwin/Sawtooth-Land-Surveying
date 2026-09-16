@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3001/api/applications";
+const API_URL = `${window.SAWTOOTH_API_URL || `${window.location.protocol}//${window.location.hostname}:3001`}/api/applications`;
 const form = document.querySelector("#applicationForm");
 const statusBox = document.querySelector("#formStatus");
 

@@ -1,4 +1,7 @@
-const API_BASE = "http://localhost:3001/api";
+const API_BASE = `${window.SAWTOOTH_API_URL || `${window.location.protocol}//${window.location.hostname}:3001`}/api`;
+const loginView = document.querySelector("#adminLogin");
+const loginForm = document.querySelector("#adminLoginForm");
+const loginStatus = document.querySelector("#adminLoginStatus");
 const STATUS_OPTIONS = ["submitted", "under_review", "shortlisted", "interview", "accepted", "rejected"];
 const STATUS_LABELS = {
   submitted: "Submitted",
@@ -69,10 +72,30 @@ function statusClass(status) { return STATUS_OPTIONS.includes(status) ? status :
 function initials(application) { return `${application.first_name?.[0] || ""}${application.last_name?.[0] || ""}`.toUpperCase() || "?"; }
 
 async function fetchJson(path, options = {}) {
-  const response = await fetch(`${API_BASE}${path}`, { headers: { ...(options.body ? { "Content-Type": "application/json" } : {}) }, ...options });
+  const response = await fetch(`${API_BASE}${path}`, { credentials: "include", headers: { ...(options.body ? { "Content-Type": "application/json" } : {}) }, ...options });
   const result = await response.json().catch(() => ({}));
+  if (response.status === 401) {
+    if (path === "/auth/session") {
+      showLogin(result.message || "Admin authentication is required.");
+      throw new Error("Authentication required.");
+    }
+    throw new Error(result.message || "Authentication failed.");
+  }
   if (!response.ok) throw new Error(result.message || `Request failed (${response.status}).`);
   return result;
+}
+
+function showLogin(message = "") {
+  loginView.hidden = false;
+  document.querySelector(".admin-shell").hidden = true;
+  loginStatus.textContent = message;
+  loginStatus.hidden = !message;
+  document.querySelector("#adminPassword").focus();
+}
+
+function showAdmin() {
+  loginView.hidden = true;
+  document.querySelector(".admin-shell").hidden = false;
 }
 
 function setHealth(online) {
@@ -250,5 +273,25 @@ elements.mobileMenuButton.addEventListener("click", () => {
 });
 document.querySelectorAll(".nav-link").forEach((link) => link.addEventListener("click", () => elements.adminSidebar.classList.remove("is-open")));
 
-checkHealth();
-loadApplications();
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  loginStatus.hidden = true;
+  try {
+    await fetchJson("/auth/login", { method: "POST", body: JSON.stringify({ password: loginForm.elements.password.value }) });
+    loginForm.reset();
+    showAdmin();
+    checkHealth();
+    loadApplications();
+  } catch (error) {
+    if (error.message !== "Authentication required.") {
+      loginStatus.textContent = error.message;
+      loginStatus.hidden = false;
+    }
+  }
+});
+
+fetchJson("/auth/session").then(() => {
+  showAdmin();
+  checkHealth();
+  loadApplications();
+}).catch(() => showLogin());

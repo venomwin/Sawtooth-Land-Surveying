@@ -8,6 +8,17 @@
   <link rel="stylesheet" href="admin.css">
 </head>
 <body>
+  <main id="adminLogin" class="admin-login" hidden>
+    <form id="adminLoginForm" class="admin-login-card">
+      <p class="eyebrow">SAWTOOTH LAND SURVEYING</p>
+      <h1>Admin sign in</h1>
+      <p>Enter the administrator password to view applications.</p>
+      <label for="adminPassword">Password</label>
+      <input id="adminPassword" name="password" type="password" autocomplete="current-password" required>
+      <p id="adminLoginStatus" class="login-status" role="alert" hidden></p>
+      <button class="button" type="submit">SIGN IN</button>
+    </form>
+  </main>
   <!--
     LOCAL DEVELOPMENT ADMIN CONSOLE
     Authentication will be added before production deployment.

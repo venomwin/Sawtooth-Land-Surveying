@@ -1,3 +1,25 @@
+ .admin-login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #07110d;
+  color: #f4f0e7;
+}
+
+.admin-login-card {
+  width: min(100%, 420px);
+  display: grid;
+  gap: 14px;
+  padding: 36px;
+  background: #10231a;
+  border: 1px solid #31533e;
+}
+
+.admin-login-card h1 { margin: 0; }
+.admin-login-card label { font-weight: 700; }
+.admin-login-card input { padding: 13px; font: inherit; }
+.login-status { margin: 0; color: #ffb0a8; }
 :root {
   --admin-bg: #050907;
   --admin-panel: rgba(12, 25, 19, 0.82);
