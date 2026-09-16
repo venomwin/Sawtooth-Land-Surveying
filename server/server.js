@@ -10,12 +10,12 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:8000";
-const sessions = new Map();
 
 function createSession() {
-  const token = crypto.randomBytes(32).toString("hex");
-  sessions.set(token, Date.now() + 8 * 60 * 60 * 1000);
-  return token;
+  const expiresAt = Date.now() + 8 * 60 * 60 * 1000;
+  const payload = Buffer.from(String(expiresAt)).toString("base64url");
+  const signature = crypto.createHmac("sha256", ADMIN_PASSWORD).update(payload).digest("base64url");
+  return `${payload}.${signature}`;
 }
 
 function readCookie(request, name) {
@@ -26,9 +26,11 @@ function readCookie(request, name) {
 
 function requireAdmin(request, response, next) {
   const token = readCookie(request, "admin_session");
-  const expiresAt = sessions.get(token);
-  if (!expiresAt || expiresAt < Date.now()) {
-    sessions.delete(token);
+  const [payload, signature] = token.split(".");
+  const expectedSignature = payload && ADMIN_PASSWORD ? crypto.createHmac("sha256", ADMIN_PASSWORD).update(payload).digest("base64url") : "";
+  const validSignature = signature && expectedSignature && signature.length === expectedSignature.length && crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature));
+  const expiresAt = Number(Buffer.from(payload || "", "base64url").toString("utf8"));
+  if (!validSignature || !Number.isFinite(expiresAt) || expiresAt < Date.now()) {
     return response.status(401).json({ success: false, message: "Admin authentication is required." });
   }
   return next();
@@ -50,8 +52,6 @@ app.post("/api/auth/login", (req, res) => {
 });
 
 app.post("/api/auth/logout", requireAdmin, (req, res) => {
-  const token = readCookie(req, "admin_session");
-  sessions.delete(token);
   res.setHeader("Set-Cookie", "admin_session=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0");
   return res.json({ success: true });
 });
@@ -64,6 +64,10 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/applications", (req, res, next) => req.method === "POST" ? next() : requireAdmin(req, res, next), applicationRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Sawtooth Land Surveying application API running at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Sawtooth Land Surveying application API running at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

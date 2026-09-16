@@ -1,4 +1,4 @@
-const API_BASE = `${window.SAWTOOTH_API_URL || `${window.location.protocol}//${window.location.hostname}:3001`}/api`;
+const API_BASE = window.SAWTOOTH_API_URL ? `${window.SAWTOOTH_API_URL}/api` : "/api";
 const loginView = document.querySelector("#adminLogin");
 const loginForm = document.querySelector("#adminLoginForm");
 const loginStatus = document.querySelector("#adminLoginStatus");

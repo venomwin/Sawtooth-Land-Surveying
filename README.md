@@ -26,3 +26,7 @@ Useful API routes:
 - `POST /api/applications`
 - `GET /api/applications`
 - `GET /api/applications/:id`
+
+## Supabase setup
+
+Run `supabase/schema.sql` in the Supabase SQL Editor. Copy `server/.env.example` to `server/.env` and set the replacement service-role key locally. Never commit `server/.env` or expose the service-role key in browser code.
