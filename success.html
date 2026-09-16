@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Application received by Sawtooth Land Surveying.">
+  <title>Application Received | Sawtooth Land Surveying</title>
+  <link rel="stylesheet" href="success.css">
+</head>
+<body class="success-page">
+  <header class="success-header">
+    <div class="success-shell success-header-inner">
+      <a class="success-brand" href="index.html">
+        <img src="/images/logovacancy.jpg" alt="Sawtooth Land Surveying logo">
+        <span>Sawtooth Land Surveying</span>
+      </a>
+      <nav class="success-nav" aria-label="Success page navigation">
+        <a href="index.html">Careers</a>
+        <a href="forms.html">Application</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="success-main">
+    <section class="success-shell success-content" aria-labelledby="successTitle">
+      <div class="success-copy">
+        <p class="success-eyebrow">APPLICATION RECEIVED</p>
+        <h1 id="successTitle">Application Submitted!</h1>
+        <p class="success-lede">Thank you for your interest in joining Sawtooth Land Surveying.</p>
+        <p>Your application has been successfully submitted.</p>
+        <p>We'll review your information and contact you by email regarding the next steps.</p>
+        <p class="success-next-step">Application status: <strong>Awaiting review</strong></p>
+        <div class="success-reference" id="applicationReference" hidden>
+          <span>Application Reference</span>
+          <strong id="applicationId"></strong>
+        </div>
+        <p class="success-generic" id="genericReceipt" hidden>Your application has been received.</p>
+        <a class="success-button" href="index.html">RETURN TO CAREERS <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="success-scene-wrap" aria-label="Animated application confirmation visualization" role="img">
+        <canvas id="successScene"></canvas>
+        <div class="scene-caption"><span class="scene-dot"></span>SECURE RECEIPT / FIELD SYSTEM</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="success-footer">
+    <div class="success-shell">
+      <span>Sawtooth Land Surveying</span>
+      <span>Senior Land Surveyor Recruitment</span>
+    </div>
+  </footer>
+
+  <script type="module" src="success.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Local Sawtooth Land Surveying application administration console.">
+  <title>Admin Console | Sawtooth Land Surveying</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <!--
+    LOCAL DEVELOPMENT ADMIN CONSOLE
+    Authentication will be added before production deployment.
+  -->
+  <div class="admin-shell">
+    <header class="admin-header">
+      <a class="admin-brand" href="../index.html">
+        <img src="../images/logovacancy.jpg" alt="Sawtooth Land Surveying logo">
+        <span><strong>Sawtooth Land Surveying</strong><small>ADMIN CONSOLE</small></span>
+      </a>
+      <div class="header-tools">
+        <span id="healthIndicator" class="health-indicator is-pending"><i></i><span>SYSTEM CHECKING</span></span>
+        <button id="mobileMenuButton" class="icon-button" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      </div>
+    </header>
+
+    <aside id="adminSidebar" class="admin-sidebar">
+      <nav aria-label="Admin navigation">
+        <p class="nav-label">Workspace</p>
+        <a class="nav-link" href="#dashboard" data-view="dashboard">◈ <span>Dashboard</span></a>
+        <a class="nav-link is-active" href="#applications" data-view="applications">▣ <span>Applications</span></a>
+        <div class="nav-rule"></div>
+        <p class="nav-label">System</p>
+        <a class="nav-link" href="#api-status" data-view="applications">◉ <span>API Status</span><em id="sidebarApiStatus">Checking</em></a>
+        <a class="nav-link" href="#database-status" data-view="applications">▤ <span>Database Status</span><em>SQLite</em></a>
+        <div class="sidebar-footer"><span class="pulse-dot"></span> LOCAL DEVELOPMENT</div>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <section id="dashboardView" class="admin-view" aria-labelledby="pageTitle">
+        <div class="page-heading">
+          <div><p class="eyebrow">APPLICATIONS / OPERATIONS</p><h1 id="pageTitle">Application command center</h1><p class="page-description">Review, sort, and move candidates through the Senior Land Surveyor process.</p></div>
+          <button id="refreshButton" class="button button-secondary" type="button"><span aria-hidden="true">↻</span> REFRESH</button>
+        </div>
+
+        <div id="statsGrid" class="stats-grid" aria-live="polite"></div>
+
+        <div class="toolbar panel">
+          <label class="search-field"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search applications..." autocomplete="off"></label>
+          <label class="filter-field"><span>STATUS</span><select id="statusFilter"><option value="all">All statuses</option><option value="submitted">Submitted</option><option value="under_review">Under Review</option><option value="shortlisted">Shortlisted</option><option value="interview">Interview</option><option value="accepted">Accepted</option><option value="rejected">Rejected</option></select></label>
+        </div>
+
+        <div id="listState" class="state-panel" hidden></div>
+        <section class="applications-panel panel" aria-labelledby="listHeading">
+          <div class="section-heading"><div><p class="eyebrow">LIVE REGISTER</p><h2 id="listHeading">Applicant list <span id="resultCount" class="count-label"></span></h2></div><span class="sort-note">Newest first</span></div>
+          <div id="applicationList" class="application-list"></div>
+        </section>
+      </section>
+
+      <section id="detailView" class="admin-view detail-view" hidden aria-labelledby="detailName">
+        <button id="backButton" class="back-link" type="button">← BACK TO APPLICATIONS</button>
+        <div id="detailState" class="state-panel" hidden></div>
+        <div id="applicationDetail"></div>
+      </section>
+    </main>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>

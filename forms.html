@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional application for the Senior Land Surveyor position at Sawtooth Land Surveying.">
+  <title>Professional Application | Sawtooth Land Surveying</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="application-page">
+  <header class="application-header">
+    <div class="container application-header-inner">
+      <a class="application-brand" href="index.html">
+        <img src="/images/logovacancy.jpg" alt="Sawtooth Land Surveying logo">
+        <span>Sawtooth Land Surveying</span>
+      </a>
+      <a class="application-back-link" href="index.html">Back to careers</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="application-hero">
+      <div class="container">
+        <p class="eyebrow">APPLICATION</p>
+        <h1>Senior Land Surveyor</h1>
+        <p class="application-intro">Professional Application</p>
+        <p class="application-lede">Complete the application below. Your information will be submitted for review as part of the Senior Land Surveyor recruitment process.</p>
+      </div>
+    </section>
+
+    <div class="container application-container">
+      <div id="formStatus" class="form-status" role="status" aria-live="polite" hidden></div>
+      <form id="applicationForm" class="application-form" enctype="multipart/form-data" novalidate>
+        <section class="form-section">
+          <div class="form-section-header"><span>01</span><div><p class="eyebrow">PERSONAL INFORMATION</p><h2>Tell us about yourself</h2></div></div>
+          <div class="form-grid">
+            <label class="form-field">First name *<input name="first_name" required></label>
+            <label class="form-field">Middle name(s)<input name="middle_name"></label>
+            <label class="form-field">Last name *<input name="last_name" required></label>
+            <label class="form-field">Preferred name<input name="preferred_name"></label>
+            <label class="form-field">Email address *<input type="email" name="email" required></label>
+            <label class="form-field">Phone country code<input name="phone_country_code" placeholder="+1"></label>
+            <label class="form-field">Phone number *<input name="phone_number" required></label>
+            <label class="form-field">Alternative phone<input name="alternative_phone"></label>
+            <label class="form-field">Preferred contact method<span class="select-wrap"><select name="preferred_contact_method"><option value="">Select one</option><option>Email</option><option>Phone</option><option>Either</option></select></span></label>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="form-section-header"><span>02</span><div><p class="eyebrow">CURRENT LOCATION</p><h2>Where are you based?</h2></div></div>
+          <div class="form-grid">
+            <label class="form-field">Country of residence *<input name="country_of_residence" required></label>
+            <label class="form-field">City / locality<input name="city"></label>
+            <label class="form-field">State / Province / Region<input name="region"></label>
+            <label class="form-field">Postal / ZIP code<input name="postal_code"></label>
+            <label class="form-field form-field-wide">Full address<textarea name="full_address" rows="3"></textarea></label>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="form-section-header"><span>03</span><div><p class="eyebrow">PROFESSIONAL PROFILE</p><h2>Your surveying experience</h2></div></div>
+          <div class="form-grid">
+            <label class="form-field">Current or most recent job title<input name="current_job_title"></label>
+            <label class="form-field">Current or most recent employer<input name="current_employer"></label>
+            <label class="form-field">Total surveying experience (years)<input type="number" min="0" step="0.5" name="total_surveying_experience"></label>
+            <label class="form-field">Senior-level surveying experience (years)<input type="number" min="0" step="0.5" name="senior_surveying_experience"></label>
+            <label class="form-field">Field surveying experience (years)<input type="number" min="0" step="0.5" name="field_surveying_experience"></label>
+            <label class="form-field">Office / technical surveying experience (years)<input type="number" min="0" step="0.5" name="office_surveying_experience"></label>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="form-section-header"><span>04</span><div><p class="eyebrow">SURVEYING SPECIALIZATIONS</p><h2>Areas of practice</h2></div></div>
+          <div class="checkbox-group" data-group="specializations">
+            <label><input type="checkbox" value="Land Surveying"> Land Surveying</label><label><input type="checkbox" value="Boundary Surveying"> Boundary Surveying</label><label><input type="checkbox" value="Cadastral Surveying"> Cadastral Surveying</label><label><input type="checkbox" value="Construction Surveying"> Construction Surveying</label><label><input type="checkbox" value="Topographic Surveying"> Topographic Surveying</label><label><input type="checkbox" value="Engineering Surveying"> Engineering Surveying</label><label><input type="checkbox" value="Geodetic Surveying"> Geodetic Surveying</label><label><input type="checkbox" value="Hydrographic Surveying"> Hydrographic Surveying</label><label><input type="checkbox" value="Mining Surveying"> Mining Surveying</label><label><input type="checkbox" value="Subdivision Surveying"> Subdivision Surveying</label><label><input type="checkbox" value="GIS / Geospatial Work"> GIS / Geospatial Work</label><label><input type="checkbox" value="Other" data-other-target="specializationsOther"> Other</label>
+          </div>
+          <label class="form-field conditional-field" id="specializationsOtherWrap" hidden>Please describe<input id="specializationsOther" data-other-value="specializations"></label>
+        </section>
+
+        <section class="form-section">
+          <div class="form-section-header"><span>05</span><div><p class="eyebrow">EDUCATION &amp; QUALIFICATIONS</p><h2>Academic and technical background</h2></div></div>
+          <div id="educationContainer"></div><button type="button" class="add-item-btn" data-add="education">+ Add Another Qualification</button>
+        </section>
+
+        <section class="form-section">
+          <div class="form-section-header"><span>06</span><div><p class="eyebrow">PROFESSIONAL LICENSES / CREDENTIALS</p><h2>Credentials and registrations</h2></div></div>
+          <div id="credentialsContainer"></div><button type="button" class="add-item-btn" data-add="credentials">+ Add Another Credential</button>
+        </section>
+
+        <section class="form-section"><div class="form-section-header"><span>07</span><div><p class="eyebrow">EMPLOYMENT HISTORY</p><h2>Your professional history</h2></div></div><div id="employmentContainer"></div><button type="button" class="add-item-btn" data-add="employment">+ Add Another Position</button></section>
+
+        <section class="form-section">
+          <div class="form-section-header"><span>08</span><div><p class="eyebrow">SUPERVISORY EXPERIENCE</p><h2>Team leadership</h2></div></div>
+          <fieldset class="choice-fieldset"><legend>Have you supervised survey crews or junior surveyors?</legend><label><input type="radio" name="supervised_teams" value="Yes"> Yes</label><label><input type="radio" name="supervised_teams" value="No"> No</label></fieldset>
+          <label class="form-field conditional-field" id="supervisedNumberWrap" hidden>Approximate number of people supervised<input type="number" min="0" name="number_supervised"></label>
+        </section>
+
+        <section class="form-section"><div class="form-section-header"><span>09</span><div><p class="eyebrow">WORK AUTHORIZATION &amp; AVAILABILITY</p><h2>Planning the next step</h2></div></div><div class="form-grid"><label class="form-field">Authorized to work in the country where this position is located?<span class="select-wrap"><select name="work_authorized"><option value="">Select one</option><option>Yes</option><option>No</option><option>Unsure</option></select></span></label><label class="form-field">Require employer-sponsored work authorization?<span class="select-wrap"><select name="requires_sponsorship"><option value="">Select one</option><option>Yes</option><option>No</option><option>Unsure</option></select></span></label><label class="form-field">Willing to relocate?<span class="select-wrap"><select name="willing_to_relocate"><option value="">Select one</option><option>Yes</option><option>No</option><option>Open to discussion</option></select></span></label><label class="form-field">Available start date<input type="date" name="available_start_date"></label></div></section>
+
+        <section class="form-section"><div class="form-section-header"><span>10</span><div><p class="eyebrow">DOCUMENTS</p><h2>Supporting materials</h2></div></div><div class="form-grid"><label class="form-field form-field-wide">Resume / CV *<input type="file" name="resume" accept="*/*"><small>Upload your resume in any file format, or paste your resume text below. Maximum 10 MB per file.</small></label><label class="form-field form-field-wide">Or paste your resume / CV below<textarea name="resume_text" rows="8"></textarea></label><label class="form-field form-field-wide">Professional license / credential documents<input type="file" name="license_documents" accept="*/*" multiple><small>Any file format accepted. Maximum 10 MB per file.</small></label><label class="form-field form-field-wide">Qualification / degree documents<input type="file" name="qualification_documents" accept="*/*" multiple><small>Any file format accepted. Maximum 10 MB per file.</small></label><label class="form-field form-field-wide">Professional portfolio<input type="file" name="portfolio" accept="*/*" multiple><small>Any file format accepted. Maximum 10 MB per file.</small></label></div></section>
+
+        <section class="form-section declaration-section"><div class="form-section-header"><span>11</span><div><p class="eyebrow">DECLARATION</p><h2>Confirm your application</h2></div></div><label class="checkbox-field declaration-field"><input type="checkbox" name="applicant_declaration" value="true" id="applicantDeclaration" required><span>I confirm that the information provided in this application is accurate and complete to the best of my knowledge.</span></label><label class="form-field">Full name as declaration *<input type="text" name="declaration_name" id="declarationName" required></label><button class="primary-btn submit-btn" type="submit">SUBMIT APPLICATION <span aria-hidden="true">→</span></button></section>
+      </form>
+    </div>
+  </main>
+
+  <template id="educationTemplate"><div class="repeatable-card education-item"><div class="repeatable-header"><h3>Qualification</h3><button type="button" class="remove-item-btn">Remove</button></div><div class="form-grid"><label class="form-field">Qualification level<span class="select-wrap"><select name="qualification_level"><option value="">Select one</option><option>Secondary / High School</option><option>Vocational / Technical Qualification</option><option>Certificate</option><option>Diploma</option><option>Associate-Level Qualification</option><option>Bachelor's Degree</option><option>Graduate Diploma</option><option>Postgraduate Certificate</option><option>Master's Degree</option><option>Doctorate</option><option>Professional Degree</option><option>Other</option></select></span></label><label class="form-field">Qualification / degree title *<input name="qualification_title" placeholder="Example: B.Tech Surveying and Geoinformatics" required></label><label class="form-field">Field of study<input name="field_of_study"></label><label class="form-field">Institution / university *<input name="institution" required></label><label class="form-field">Country *<input name="education_country" required></label><label class="form-field">City<input name="education_city"></label><label class="form-field">Completion year<input name="completion_year"></label><label class="checkbox-field"><input type="checkbox" name="currently_studying"> Currently studying</label></div></div></template>
+  <template id="credentialsTemplate"><div class="repeatable-card credential-item"><div class="repeatable-header"><h3>Credential</h3><button type="button" class="remove-item-btn">Remove</button></div><div class="form-grid"><label class="form-field">Credential type<input name="credential_type"></label><label class="form-field">Professional title / credential name *<input name="credential_title" required></label><label class="form-field">Issuing country *<input name="issuing_country" required></label><label class="form-field">State / province / region<input name="issuing_region"></label><label class="form-field">Issuing authority<input name="issuing_authority"></label><label class="form-field">License / registration number<input name="credential_number"></label><label class="form-field">Issue date<input type="date" name="issue_date"></label><label class="form-field">Expiry date<input type="date" name="expiry_date"></label><label class="form-field">Status<span class="select-wrap"><select name="credential_status"><option value="">Select one</option><option>Active</option><option>Expired</option><option>Pending</option><option>Suspended</option><option>Other</option></select></span></label></div></div></template>
+  <template id="employmentTemplate"><div class="repeatable-card employment-item"><div class="repeatable-header"><h3>Position</h3><button type="button" class="remove-item-btn">Remove</button></div><div class="form-grid"><label class="form-field">Employer *<input name="employer" required></label><label class="form-field">Job title *<input name="job_title" required></label><label class="form-field">Country<input name="country"></label><label class="form-field">City<input name="city"></label><label class="form-field">State / province / region<input name="region"></label><label class="form-field">Employment type<span class="select-wrap"><select name="employment_type"><option value="">Select one</option><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Temporary</option><option>Self-employed</option><option>Internship</option><option>Other</option></select></span></label><label class="form-field">Start date<input type="date" name="start_date"></label><label class="form-field">End date<input type="date" name="end_date"></label><label class="checkbox-field"><input type="checkbox" name="currently_employed"> I currently work here</label><label class="form-field form-field-wide">Main responsibilities<textarea name="responsibilities" rows="3"></textarea></label><label class="form-field form-field-wide">Major projects<textarea name="major_projects" rows="3"></textarea></label></div></div></template>
+  <script src="forms.js"></script>
+</body>
+</html>
